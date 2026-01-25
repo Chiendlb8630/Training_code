@@ -1,0 +1,19 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPath": "/home/chienkd/esp/v5.5.1/esp-idf",
+  "idf.pythonInstallPath": "/usr/bin/python3",
+  "idf.openOcdConfigs": [
+    "board/esp32-wrover-kit-3.3v.cfg"
+  ],
+  "idf.port": "detect",
+  "idf.toolsPath": "/home/chienkd/.espressif",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32"
+  },
+  "clangd.path": "/home/chienkd/.espressif/tools/esp-clang/esp-19.1.2_20250312/esp-clang/bin/clangd",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=/home/chienkd/wifi_driver/build"
+  ]
+}
