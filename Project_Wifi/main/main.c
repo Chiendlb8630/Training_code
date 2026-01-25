@@ -12,8 +12,8 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 
-#define ESP_WIFI_SSID      "Ula Working Space"
-#define ESP_WIFI_PASS      "79797979"
+#define ESP_WIFI_SSID      "Ula Working Space" // chỗ nhập wifi
+#define ESP_WIFI_PASS      "79797979"          // Chỗ nhập mật khẩu wifi.
 #define LED_GPIO           2
 #define MAXIMUM_RETRY      5
 
