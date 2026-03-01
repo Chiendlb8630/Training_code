@@ -5,7 +5,7 @@
   "idf.openOcdConfigs": [
     "board/esp32-wrover-kit-3.3v.cfg"
   ],
-  "idf.port": "detect",
+  "idf.port": "/dev/ttyUSB0",
   "idf.toolsPath": "/home/chienkd/.espressif",
   "idf.customExtraVars": {
     "IDF_TARGET": "esp32"
@@ -15,5 +15,7 @@
     "--background-index",
     "--query-driver=**",
     "--compile-commands-dir=/home/chienkd/Training_code_IDF/Training_code/mqtt_demo/build"
-  ]
+  ],
+  "idf.currentSetup": "/home/chienkd/esp/v5.5.1/esp-idf",
+  "idf.flashType": "UART"
 }

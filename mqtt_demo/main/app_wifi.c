@@ -24,10 +24,18 @@ static void event_handler(void* arg, esp_event_base_t event_base,
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         ESP_LOGI(TAG, "Da nhan IP:" IPSTR, IP2STR(&event->ip_info.ip));
         s_retry_num = 0;
-        ESP_LOGI(TAG, "Bật đèn LED tại GPIO %d", LED_GPIO);
+        
         gpio_set_level(LED_GPIO, 1);
-        ESP_LOGI(TAG, "Co IP roi, bat dau ket noi MQTT...");
-        mqtt_app_start(BROKER_URI);
+        
+        // Thêm biến static để đảm bảo chỉ init MQTT 1 lần
+        static bool is_mqtt_started = false; 
+        if (!is_mqtt_started) {
+            ESP_LOGI(TAG, "Co IP roi, bat dau ket noi MQTT lan dau tien...");
+            mqtt_app_start(BROKER_URI);
+            is_mqtt_started = true;
+        } else {
+            ESP_LOGI(TAG, "Co IP lại, MQTT se tu dong reconnect, khong can init lai.");
+        }
     }
 }
 
@@ -35,7 +43,7 @@ void init_led(void)
 {
     gpio_reset_pin(LED_GPIO);
     gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
-    gpio_set_level(LED_GPIO, 0); // Mặc định tắt
+    gpio_set_level(LED_GPIO, 0);
 }
 
 void wifi_init_sta(void)
@@ -54,6 +62,7 @@ void wifi_init_sta(void)
                                                         &event_handler,
                                                         NULL,
                                                         &instance_any_id));
+
     ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT,
                                                         IP_EVENT_STA_GOT_IP,
                                                         &event_handler,

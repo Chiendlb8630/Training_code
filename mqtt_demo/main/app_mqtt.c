@@ -15,7 +15,6 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         // Khi kết nối thành công, tự động sub vào 1 topic.
         msg_id = esp_mqtt_client_subscribe(client, MQTT_TOPIC_SUB, 0);
         ESP_LOGI(MQTT_TAG, "Sent subscribe successful, msg_id=%d", msg_id);
-
         // Gửi thử một tin nhắn
         esp_mqtt_client_publish(client, MQTT_TOPIC_PUB, "Device Online", 0, 1, 0);
         break;
